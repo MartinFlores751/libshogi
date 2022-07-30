@@ -1,0 +1,31 @@
+# --------------
+# libshogi build
+# --------------
+add_library(shogi shogi-piece.cpp king-piece.cpp rook-piece.cpp bishop-piece.cpp gold-piece.cpp)
+target_include_directories(shogi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
+# ---------
+# Test code
+# ---------
+find_package(Catch2
+	     REQUIRED)
+
+add_executable(king-piece-unit test-main.cpp king-piece.test.cpp)
+target_include_directories(king-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(king-piece-unit PRIVATE Catch2::Catch2 shogi)
+add_test(NAME kingPieceUnit COMMAND king-piece-unit)
+
+add_executable(rook-piece-unit test-main.cpp rook-piece.test.cpp)
+target_include_directories(rook-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(rook-piece-unit PRIVATE Catch2::Catch2 shogi)
+add_test(NAME rookPieceUnit COMMAND rook-piece-unit)
+
+add_executable(bishop-piece-unit test-main.cpp bishop-piece.test.cpp)
+target_include_directories(bishop-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(bishop-piece-unit PRIVATE Catch2::Catch2 shogi)
+add_test(NAME bishopPieceUnit COMMAND bishop-piece-unit)
+
+add_executable(gold-piece-unit test-main.cpp gold-piece.test.cpp)
+target_include_directories(gold-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(gold-piece-unit PRIVATE Catch2::Catch2 shogi)
+add_test(NAME goldPieceUnit COMMAND gold-piece-unit)
