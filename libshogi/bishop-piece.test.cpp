@@ -27,6 +27,13 @@ SCENARIO("bishop moving in a normal pattern") {
         REQUIRE(centerPiece->getPosition() == std::pair<int, int>{6, 6});
       }
     }
+
+    WHEN("the bishop is moved up-left") {
+      centerPiece->movePiece(1, 9);
+      THEN("the bishop moves up-left") {
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{1, 9});
+      }
+    }
   }
 }
 
