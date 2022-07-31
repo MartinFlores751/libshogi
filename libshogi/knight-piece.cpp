@@ -1,5 +1,4 @@
 #include <libshogi/knight-piece.hpp>
-#include <math.h>
 
 namespace shogi {
 KnightPiece::KnightPiece(int x, int y, PieceColor color)
@@ -8,12 +7,12 @@ KnightPiece::KnightPiece(int x, int y, PieceColor color)
 bool KnightPiece::move(int newX, int newY) noexcept {
   std::pair<int, int> pos{getPosition()};
 
-  if ((newX == pos.first) || (newY == pos.second)) {
-    return false;
+  if ((newY == (pos.second + 2)) &&
+      (newX == pos.first - 1 || newX == pos.first + 1)) {
+    return true;
   }
 
-  float slope = std::abs((newX - pos.first) / (newY - pos.second));
-  return slope == 1 ? true : false;
+  return false;
 }
 void KnightPiece::promote() noexcept {}
 } // namespace shogi
