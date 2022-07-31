@@ -1,7 +1,7 @@
 # --------------
 # libshogi build
 # --------------
-add_library(shogi shogi-piece.cpp king-piece.cpp rook-piece.cpp bishop-piece.cpp gold-piece.cpp silver-piece.cpp knight-piece.cpp lance-piece.cpp)
+add_library(shogi shogi-piece.cpp king-piece.cpp rook-piece.cpp bishop-piece.cpp gold-piece.cpp silver-piece.cpp knight-piece.cpp lance-piece.cpp pawn-piece.cpp)
 target_include_directories(shogi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 # ---------
@@ -44,3 +44,8 @@ add_executable(lance-piece-unit test-main.cpp lance-piece.test.cpp)
 target_include_directories(lance-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_link_libraries(lance-piece-unit PRIVATE Catch2::Catch2 shogi)
 add_test(NAME lancePieceUnit COMMAND lance-piece-unit)
+
+add_executable(pawn-piece-unit test-main.cpp pawn-piece.test.cpp)
+target_include_directories(pawn-piece-unit PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(pawn-piece-unit PRIVATE Catch2::Catch2 shogi)
+add_test(NAME pawnPieceUnit COMMAND pawn-piece-unit)
