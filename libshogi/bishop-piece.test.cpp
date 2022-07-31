@@ -21,9 +21,9 @@ SCENARIO("bishop moving in a normal pattern") {
         std::make_unique<shogi::BishopPiece>(
             5, 5, shogi::ShogiPiece::PieceColor::Black);
 
-    WHEN("the bishop is moved up-left") {
+    WHEN("the bishop is moved up-right") {
       centerPiece->movePiece(6, 6);
-      THEN("the bishop moves up-left") {
+      THEN("the bishop moves up-right") {
         REQUIRE(centerPiece->getPosition() == std::pair<int, int>{6, 6});
       }
     }
