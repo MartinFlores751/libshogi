@@ -24,7 +24,7 @@ SCENARIO("lance moving in a normal pattern") {
     WHEN("the lance is moved up") {
       centerPiece->movePiece(5, 7);
       THEN("the lance moves up") {
-        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{6, 7});
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{5, 7});
       }
     }
   }
