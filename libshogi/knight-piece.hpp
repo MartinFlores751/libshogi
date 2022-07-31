@@ -22,7 +22,7 @@ public:
 
 private:
   /**
-   * @brief Verifies piece ranges diagonally.
+   * @brief Verifies piece jumps in a 'L' shaped fasion, forwards only.
    *
    * @param newX Desired X-Coordinate.
    * @param newY Desired Y-Coordinate.
