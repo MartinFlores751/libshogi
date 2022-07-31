@@ -7,10 +7,10 @@
 namespace Catch {
 template <> struct StringMaker<std::pair<int, int>> {
   static std::string convert(const std::pair<int, int> &item) {
-    std::stringstream yass{};
-    yass << "first: " << item.first << ", second: " << item.second;
+    std::stringstream stream{};
+    stream << "first: " << item.first << ", second: " << item.second;
 
-    return yass.str();
+    return stream.str();
   }
 };
 } // namespace Catch
