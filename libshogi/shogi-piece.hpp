@@ -56,6 +56,15 @@ private:
   PieceColor color;
 
   /**
+   * @brief Get the relative movement of piece
+   *
+   * @param newX Desired X Coordinate
+   * @param newY Desired Y Coordinate
+   * @return std::pair<int, int> Relative movement from 'view' of Piece.
+   */
+  std::pair<int, int> computeRelativeMovement(int newX, int newY);
+
+  /**
    * @brief To be implemented by derived classes, specifying move
    * behaviors.
    *
