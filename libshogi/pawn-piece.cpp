@@ -6,12 +6,7 @@ PawnPiece::PawnPiece(int x, int y, PieceColor color)
     : ShogiPiece(x, y, color) {}
 
 bool PawnPiece::move(int newX, int newY) noexcept {
-  std::pair<int, int> pos{getPosition()};
-
-  if (newY == pos.first + 1)
-    return true;
-
-  return false;
+  return newX == 0 && newY == 1; // Ensure Pawn only moves 1 block forward
 }
 void PawnPiece::promote() noexcept {}
 } // namespace shogi
