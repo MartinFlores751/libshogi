@@ -15,7 +15,11 @@ template <> struct StringMaker<std::pair<int, int>> {
 };
 } // namespace Catch
 
-SCENARIO("knight moving in a normal pattern") {
+// -----------------
+// Black piece tests
+// -----------------
+
+SCENARIO("black knight moving in a normal pattern") {
   GIVEN("A central knight piece") {
     std::unique_ptr<shogi::ShogiPiece> centerPiece =
         std::make_unique<shogi::KnightPiece>(
@@ -37,7 +41,7 @@ SCENARIO("knight moving in a normal pattern") {
   }
 }
 
-SCENARIO("knight moving in non-standad pattern") {
+SCENARIO("black knight moving in non-standad pattern") {
   GIVEN("A central knight piece") {
     std::unique_ptr<shogi::ShogiPiece> centerPiece =
         std::make_unique<shogi::KnightPiece>(
@@ -65,6 +69,67 @@ SCENARIO("knight moving in non-standad pattern") {
 
     WHEN("the knight is moved off the board") {
       cornerPiece->movePiece(0, 3);
+      THEN("the knight remains in place") {
+        REQUIRE(cornerPiece->getPosition() == std::pair<int, int>{1, 1});
+      }
+    }
+  }
+}
+
+// -----------------
+// White piece tests
+// -----------------
+
+SCENARIO("white knight moving in a normal pattern") {
+  GIVEN("A central knight piece") {
+    std::unique_ptr<shogi::ShogiPiece> centerPiece =
+        std::make_unique<shogi::KnightPiece>(
+            5, 5, shogi::ShogiPiece::PieceColor::White);
+
+    WHEN("the knight is moved in a 'right L'") {
+      centerPiece->movePiece(4, 3);
+      THEN("the knight moves up-right") {
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{4, 3});
+      }
+    }
+
+    WHEN("the knight is moved in a 'left L'") {
+      centerPiece->movePiece(6, 3);
+      THEN("the knight moves up-left") {
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{6, 3});
+      }
+    }
+  }
+}
+
+SCENARIO("white knight moving in non-standad pattern") {
+  GIVEN("A central knight piece") {
+    std::unique_ptr<shogi::ShogiPiece> centerPiece =
+        std::make_unique<shogi::KnightPiece>(
+            5, 5, shogi::ShogiPiece::PieceColor::White);
+
+    WHEN("the knight is moved forward") {
+      centerPiece->movePiece(5, 3);
+      THEN("the knight is not moved") {
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{5, 5});
+      }
+    }
+
+    WHEN("the knight is moved backward") {
+      centerPiece->movePiece(5, 6);
+      THEN("the knight is not moved") {
+        REQUIRE(centerPiece->getPosition() == std::pair<int, int>{5, 5});
+      }
+    }
+  }
+
+  GIVEN("A corner knight piece") {
+    std::unique_ptr<shogi::ShogiPiece> cornerPiece =
+        std::make_unique<shogi::KnightPiece>(
+            1, 1, shogi::ShogiPiece::PieceColor::Black);
+
+    WHEN("the knight is moved off the board") {
+      cornerPiece->movePiece(0, -1);
       THEN("the knight remains in place") {
         REQUIRE(cornerPiece->getPosition() == std::pair<int, int>{1, 1});
       }
