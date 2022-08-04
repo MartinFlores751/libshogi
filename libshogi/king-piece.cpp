@@ -5,12 +5,17 @@ KingPiece::KingPiece(int x, int y, PieceColor color)
     : ShogiPiece(x, y, color) {}
 
 bool KingPiece::move(int newX, int newY) noexcept {
-  std::pair<int, int> pos{getPosition()};
-  if (newX >= pos.first - 1 && newX <= pos.first + 1) {
-    if (newY >= pos.second - 1 && newY <= pos.second + 1) {
-      return true;
-    }
+  // No movement is invalid
+  if (newX == 0 && newY == 0) {
+    return false;
   }
+
+  // Moving in any adjacent block
+  if ((newX >= -1 && newX <= 1) && (newY >= -1 && newY <= 1)) {
+    return true;
+  }
+
+  // No other move is valid
   return false;
 }
 void KingPiece::promote() noexcept {}
