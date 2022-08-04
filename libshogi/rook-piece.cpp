@@ -5,13 +5,7 @@ RookPiece::RookPiece(int x, int y, PieceColor color)
     : ShogiPiece(x, y, color) {}
 
 bool RookPiece::move(int newX, int newY) noexcept {
-  std::pair<int, int> pos{getPosition()};
-
-  if (newX != pos.first && newY != pos.second) {
-    return false;
-  }
-
-  return true;
+  return (newX == 0 && newY != 0) || (newY == 0 && newX != 0) ? true : false;
 }
 void RookPiece::promote() noexcept {}
 } // namespace shogi
