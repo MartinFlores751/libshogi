@@ -5,14 +5,9 @@ GoldPiece::GoldPiece(int x, int y, PieceColor color)
     : ShogiPiece(x, y, color) {}
 
 bool GoldPiece::move(int newX, int newY) noexcept {
-  std::pair<int, int> pos{getPosition()};
-  int forwardDistance{newY - pos.second};
-  // Handle foreward cases
-  if (forwardDistance == 1 || forwardDistance == 0) {
-    if (newX >= pos.first - 1 || newX <= pos.first + 1) {
-      return true;
-    }
-  } else if (forwardDistance == -1 && newX == pos.first) {
+  if ((newY == 1 || newY == 0) && (newX >= -1 || newX <= 1)) {
+    return true;
+  } else if (newY == -1 && newX == 0) {
     return true;
   }
   return false;
