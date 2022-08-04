@@ -5,13 +5,7 @@ LancePiece::LancePiece(int x, int y, PieceColor color)
     : ShogiPiece(x, y, color) {}
 
 bool LancePiece::move(int newX, int newY) noexcept {
-  std::pair<int, int> pos{getPosition()};
-
-  if (newX != pos.first || pos.second >= newY) {
-    return false;
-  }
-
-  return true;
+  return (newX == 0 && newY >= 1) ? true : false;
 }
 void LancePiece::promote() noexcept {}
 } // namespace shogi
